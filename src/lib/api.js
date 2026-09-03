@@ -1,4 +1,9 @@
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:4000/api'
+const configuredApiUrl = import.meta.env.VITE_API_URL?.trim().replace(/\/$/, '')
+
+// Local development keeps working without extra setup. A production build must
+// explicitly name its API; otherwise it would incorrectly try the visitor's
+// own computer at localhost:4000.
+const API_URL = configuredApiUrl || (import.meta.env.DEV ? 'http://localhost:4000/api' : '')
 
 const TOKEN_KEY = 'nextera_token'
 
@@ -11,6 +16,12 @@ export function setToken(token) {
 }
 
 async function request(path, { method = 'GET', body, auth = true } = {}) {
+  if (!API_URL) {
+    throw new Error(
+      'The API is not configured. Set VITE_API_URL to the deployed backend URL (including /api) and redeploy.'
+    )
+  }
+
   const headers = { 'Content-Type': 'application/json' }
   if (auth) {
     const token = getToken()
