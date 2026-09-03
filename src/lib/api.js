@@ -1,10 +1,10 @@
 const configuredApiUrl = import.meta.env.VITE_API_URL?.trim().replace(/\/$/, '')
 
 const LOCAL_API_URL = 'http://localhost:4000/api'
-const PRODUCTION_API_URL = 'https://nextera-diamonds-be.onrender.com/api'
+const PRODUCTION_API_URL = '/api'
 
-// VITE_API_URL overrides this value for other environments. The deployed
-// application still has a working API when Vercel has no environment variable.
+// VITE_API_URL overrides this value for other environments. In production,
+// Vercel proxies /api to Render, so requests stay same-origin.
 const API_URL = configuredApiUrl || (import.meta.env.DEV ? LOCAL_API_URL : PRODUCTION_API_URL)
 
 const TOKEN_KEY = 'nextera_token'
