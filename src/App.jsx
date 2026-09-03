@@ -7,6 +7,7 @@ import Login from './pages/Login'
 import Dashboard from './pages/Dashboard'
 import ProductsPage from './pages/ProductsPage'
 import InventoryHistory from './pages/InventoryHistory'
+import InventoryManagement from './pages/InventoryManagement'
 import AppLayout from './components/app/AppLayout'
 import ProtectedRoute from './components/app/ProtectedRoute'
 
@@ -42,6 +43,7 @@ export default function App() {
               }
             >
               <Route index element={<Dashboard />} />
+              <Route path="inventory" element={<InventoryManagement />} />
               <Route path="products" element={<ProductsPage />} />
               <Route path="history" element={<InventoryHistory />} />
             </Route>

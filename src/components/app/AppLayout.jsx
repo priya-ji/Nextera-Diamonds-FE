@@ -3,6 +3,7 @@ import { NavLink, Outlet, useNavigate } from 'react-router-dom'
 import {
   LayoutDashboard,
   Package,
+  Boxes,
   History,
   LogOut,
   Gem,
@@ -13,6 +14,7 @@ import { useAuth } from '../../lib/auth'
 
 const NAV = [
   { to: '/app', label: 'Dashboard', icon: LayoutDashboard, end: true },
+  { to: '/app/inventory', label: 'Inventory', icon: Boxes },
   { to: '/app/products', label: 'Products', icon: Package },
   { to: '/app/history', label: 'Inventory history', icon: History },
 ]
